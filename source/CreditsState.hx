@@ -80,6 +80,8 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			['Android Port'],
+			['Dxgamer',		    'dxgamer',		    'Main Porter of the Mod',	 'https://youtube.com/c/Dxgamer7405',	'0xFFC30085'],
 			['Team Deez'],
 			['Cerulean', 'deez/ceru', 'Director/Artist', 'https://twitter.com/dastardlydeacon', 'D300FF'],
 			['FifLeo', 'deez/leo', 'Main Artist', 'https://twitter.com/fif_leo15', '00CE08'],
