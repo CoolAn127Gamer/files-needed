@@ -42,23 +42,29 @@
 	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
 
 	<classpath name="source" />
+	
+	<!-- PSYCH ENGINE CUSTOMIZATION -->
+	<define name="MODS_ALLOWED" if="desktop || android" />
+	<define name="LUA_ALLOWED" if="desktop || android" />
+	<define name="ACHIEVEMENTS_ALLOWED" />
+	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32bits"/>
+	<define name="PSYCH_WATERMARKS" /> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
+	<define name="TITLE_SCREEN_EASTER_EGG" /> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build --> <!-- Edit: i forgot the port is unofficial lmao -->
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
-	<!-- PSYCH ENGINE CUSTOMIZATION -->
-	<define name="MODS_ALLOWED" if="desktop || android"/>
-	<define name="LUA_ALLOWED" if="windows || android"/>
-	<define name="ACHIEVEMENTS_ALLOWED" />
-	<define name="VIDEOS_ALLOWED" if="web || desktop || android" unless="32bits"/>
-	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS ON TITLE SCREEN -->
+	<section if="TITLE_SCREEN_EASTER_EGG">
+		<assets path="assets/secrets" rename="assets" exclude="*.ogg" if="web"/>
+		<assets path="assets/secrets" rename="assets" exclude="*.mp3"  unless="web"/>
+	</section>
 
-	<!-- DONT ENABLE THIS -->
-	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
+	<!-- DONT ENABLE THIS --> <!-- Edit: i forgot the port is unofficial lmao -->
+	<define name="CHECK_FOR_UPDATES" />
 
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
-
+	
 	<library name="videos"        preload="true" />
 	<section if="PRELOAD_ALL">
 		<library name="songs"         preload="true" />
@@ -69,7 +75,7 @@
 		<library name="week5"         preload="true" />
 		<library name="week6"         preload="true" />
 	</section>
-
+	
 	<section if="NO_PRELOAD_ALL">
 		<library name="songs"         preload="false" />
 		<library name="shared"        preload="false" />
@@ -79,7 +85,7 @@
 		<library name="week5"         preload="false" />
 		<library name="week6"         preload="false" />
 	</section>
-
+	
 	<assets path="plugins/"             rename=''               if="VIDEOS_ALLOWED windows" />
 	<assets path="dlls/"                rename=''               if="VIDEOS_ALLOWED windows" />
 	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
@@ -97,15 +103,14 @@
 	<assets path="assets/week5"         library="week5"         exclude="*.mp3" unless="web"/>
 	<assets path="assets/week6"         library="week6"         exclude="*.ogg" if="web"/>
 	<assets path="assets/week6"         library="week6"         exclude="*.mp3" unless="web"/>
-
+	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
-	<assets path='art/hello.txt' rename='assets/data/hello.txt' />
 	<!-- <template path='mods' /> -->
-
+	
 	<!-- assets path="CHANGELOG.md" rename='changelog.txt' -->
 
-	<!-- NOTE FOR FUTURE SELF SINCE FONTS ARE ALWAYS FUCKY
+	<!-- NOTE FOR FUTURE SELF SINCE FONTS ARE ALWAYS FUCKY 
 		TO FIX ONE OF THEM, I CONVERTED IT TO OTF. DUNNO IF YOU NEED TO
 		THEN UHHH I USED THE NAME OF THE FONT WITH SETFORMAT() ON THE TEXT!!!
 		NOT USING A DIRECT THING TO THE ASSET!!!
@@ -126,13 +131,12 @@
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
-  <haxelib name="extension-videoview" if="android"/>
-  <haxelib name="extension-androidtools" if="android"/>
-
-  <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
-  <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
-
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
+	<haxelib name="extension-videoview" if="android"/>
+	<haxelib name="extension-androidtools" if="android"/>
+
+	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
+	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
@@ -182,7 +186,7 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-
+	
 	<icon path="art/icon16.png" size='16'/>
 	<icon path="art/icon32.png" size='32'/>
 	<icon path="art/icon64.png" size='64'/>
