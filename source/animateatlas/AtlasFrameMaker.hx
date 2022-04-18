@@ -1,4 +1,5 @@
 package animateatlas;
+
 import flixel.util.FlxDestroyUtil;
 import openfl.geom.Rectangle;
 import flixel.math.FlxPoint;
@@ -22,6 +23,7 @@ import js.html.File;
 #end
 
 using StringTools;
+
 class AtlasFrameMaker extends FlxFramesCollection
 {
 	//public static var widthoffset:Int = 0;
@@ -36,7 +38,7 @@ class AtlasFrameMaker extends FlxFramesCollection
 	*
 	*/
 
-	public static function construct(key:String,?_excludeArray:Array<String> = null):FlxFramesCollection
+	public static function construct(key:String,?_excludeArray:Array<String> = null, ?noAntialiasing:Bool = false):FlxFramesCollection
 	{
 		// widthoffset = _widthoffset;
 		// heightoffset = _heightoffset;
@@ -59,7 +61,7 @@ class AtlasFrameMaker extends FlxFramesCollection
 		var t:SpriteMovieClip = ss.createAnimation();
 		if(_excludeArray == null)
 		{
-			_excludeArray = t.getFrameLabels();
+		  _excludeArray = t.getFrameLabels();
 			//trace('creating all anims');
 		}
 		trace('Creating: ' + _excludeArray);
