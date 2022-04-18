@@ -14,13 +14,6 @@ import animateatlas.displayobject.SpriteMovieClip;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.graphics.frames.FlxFrame;
-#if MODS_ALLOWED
-import sys.FileSystem;
-import sys.io.File;
-#else
-import js.html.FileSystem;
-import js.html.File;
-#end
 
 using StringTools;
 
