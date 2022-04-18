@@ -69,6 +69,8 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 
+    SUtil.doTheCheck();
+
 		#if !debug
 		initialState = TitleState;
 		#end
@@ -79,8 +81,6 @@ class Main extends Sprite
 		// the reason for this is we're going to be handling our own cache smartly
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
-		
-	  SUtil.doTheCheck();
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
