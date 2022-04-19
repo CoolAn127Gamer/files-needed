@@ -209,30 +209,9 @@ class Paths
 		return voices;
 	}
 
-	inline static public function voicesCLASSIC(song:String):Any
-	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices-classic';
-		var voices = returnSound('songs', songKey);
-		return voices;
-	}
-
-	inline static public function voicesOLD(song:String):Any
-	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices-old';
-		var voices = returnSound('songs', songKey);
-		return voices;
-	}
-
 	inline static public function inst(song:String):Any
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst';
-		var inst = returnSound('songs', songKey);
-		return inst;
-	}
-
-	inline static public function instOLD(song:String):Any
-	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst-old';
 		var inst = returnSound('songs', songKey);
 		return inst;
 	}
