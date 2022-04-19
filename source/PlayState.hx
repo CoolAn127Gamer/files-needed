@@ -763,44 +763,6 @@ class PlayState extends MusicBeatState
 				add(santa);
 				CoolUtil.precacheSound('Lights_Shut_off');
 
-			case 'W5_stage_Feaster':
-				var bg:BGSprite = new BGSprite('W5/evilbg', -601, -641, 0.5, 0.5);
-				add(bg);
-
-				audience2 = new BGSprite('W5/evilupperBop', -181, 254, 0.5, 0.5, ['Upper Crowd BobEvil']);
-				add(audience2);
-
-				eggballs = new FlxSprite(-645, -307).loadGraphic(Paths.image('EggBursting'));
-				eggballs.frames = Paths.getSparrowAtlas('EggBursting');
-				eggballs.scrollFactor.set(0.6, 0.6);
-				eggballs.animation.addByPrefix('burst', 'EggBursting', 24, false);
-				eggballs.animation.addByPrefix('idle', 'EvilEgg', 24, false);
-				eggballs.visible = false;
-				add(eggballs);
-
-				audience = new FNFSprite(-153, -9);
-				audience.scrollFactor.set(1, 1);
-				audience.loadGraphic(Paths.image('W5/evilbottomBop'));
-				audience.frames = Paths.getSparrowAtlas('W5/evilbottomBop');
-				audience.animation.addByPrefix('bop', 'Bottom Level Boppers evil', 24, false);
-				audience.animation.addByPrefix('singDOWN', 'Bottom Level Boppers down', 24, false);
-				audience.animation.addByPrefix('singLEFT', 'Bottom Level Boppers left', 24, false);
-				audience.animation.addByPrefix('singRIGHT', 'Bottom Level Boppers right', 24, false);
-				audience.animation.addByPrefix('singUP', 'Bottom Level Boppers up', 24, false);
-				audience.playAnim("bop",true);
-				audience.addOffset('bop',1, 0);
-				audience.addOffset('singDOWN',24,-23);
-				audience.addOffset('singUP',0,-44);
-				audience.addOffset('singRIGHT',-12,-1);
-				audience.addOffset('singLEFT',9,-5);
-				add(audience);
-
-				var floor:BGSprite = new BGSprite('W5/evilsnow', -581,675, 1, 1);
-				add(floor);
-
-				springy = new BGSprite('W5/evilsanta', -753, 19, 1, 1, ['santa idle in fear']);
-				add(springy);
-
 			case 'mallEvil': //Week 5 - Winter Horrorland
 				var bg:BGSprite = new BGSprite('christmas/evilBG', -400, -500, 0.2, 0.2);
 				bg.setGraphicSize(Std.int(bg.width * 0.8));
@@ -904,11 +866,8 @@ class PlayState extends MusicBeatState
 		if(isPixelStage) {
 			introSoundsSuffix = '-pixel';
 		}
-		if (curStage == 'W5_stage_Feaster'){
-			dadGroup.visible = false;
+  
 			gfGroup.alpha = 0;
-			audience.alpha = 0;
-		}
 
 		if (curStage == 'limo')
 			add(limo);
@@ -4931,12 +4890,6 @@ BUT NOW THE SONG LIST HAS MY TUNE
 
 				if(heyTimer <= 0) bottomBoppers.dance(true);
 				santa.dance(true);
-			case 'W5_stage_Feaster':
-				audience2.dance();
-				springy.dance();
-				if (audience.canResetIdle)
-					audience.playAnim('bop');
-
 			case 'darklimo':
 					if(!ClientPrefs.lowQuality) {
 						grpLimoDancers.forEach(function(dancer:BackgroundDancer)
