@@ -1,6 +1,6 @@
 function onCreate()
 
-    makeLuaSprite('bg','W5/bgWalls', -1199, -861)
+    makeLuaSprite('bg','W5/bgWalls', -1199, -800)
 	addLuaSprite('bg',false)
 	setLuaSpriteScrollFactor('bg' , 0.6, 0.6);
 
