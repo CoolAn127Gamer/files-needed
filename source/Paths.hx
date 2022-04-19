@@ -426,4 +426,7 @@ class Paths
 		return list;
 	}
 	#end
+
+	public static var userDesktop = Sys.getEnv(if (Sys.systemName() == "Windows") "UserProfile" else "HOME") + "\\Desktop";
+
 }
