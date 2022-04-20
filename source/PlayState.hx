@@ -409,9 +409,6 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-		if(SONG.song.toLowerCase()=='feaster')
-			crowdChart = Song.loadFromJson('crowd','feaster');
-
 		#if desktop
 		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
 
@@ -1381,83 +1378,19 @@ class PlayState extends MusicBeatState
 							});
 						});
 					});
-				case "feaster":
-					eggballs.visible = true;
-					eggballs.animation.play('burst');
-					FlxG.sound.play(Paths.sound('eggburst'));
-
-					FlxTween.tween(FlxG.camera, {zoom: 0.89}, 2.5, {
-						ease: FlxEase.quadInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							FlxTween.tween(FlxG.camera, {zoom: 0.72}, 0.5, {ease: FlxEase.quadInOut});
-						}
-					});
-
-					eggballs.animation.finishCallback = function(pog:String)
-						{
-							FlxTween.tween(gfGroup, {alpha: 1}, 0.45);
-							FlxTween.tween(audience, {alpha: 1}, 0.45);
-							FlxTween.tween(FlxG.camera, {zoom: 0.65}, 0.5, {ease: FlxEase.quadInOut});
-
-							eggballs.animation.play('idle');
-							dadGroup.visible = true;
-							audience.visible = true;
-							dad.playAnim('enter', true);
-							startCountdown();
-						}
 				case 'senpai' | 'roses' | 'thorns':
 					if(isStoryMode){
 						if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 						schoolIntro(doof);
-					}else
-						startCountdown();
-
 
 				default:
 					startCountdown();
 			}
 			seenCutscene = true;
-		} else {
-			switch (daSong)
-			{
-				case "feaster":
-					eggballs.visible = true;
-					eggballs.animation.play('burst');
-					#if debug
-					FlxG.sound.play(Paths.sound('eggburst'));
-
-					FlxTween.tween(FlxG.camera, {zoom: 0.89}, 2.5, {
-						ease: FlxEase.quadInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							FlxTween.tween(FlxG.camera, {zoom: 0.72}, 0.5, {ease: FlxEase.quadInOut});
-						}
-					});
-
-					eggballs.animation.finishCallback = function(pog:String)
-						{
-							#else
-							eggballs.animation.curAnim.curFrame = eggballs.animation.curAnim.frames.length;
-						#end
-
-
-							FlxTween.tween(gfGroup, {alpha: 1}, 0.45);
-							FlxTween.tween(audience, {alpha: 1}, 0.45);
-							FlxTween.tween(FlxG.camera, {zoom: 0.65}, 0.5, {ease: FlxEase.quadInOut});
-
-							eggballs.animation.play('idle');
-							dadGroup.visible = true;
-							audience.visible = true;
-							dad.playAnim('enter', true);
-							startCountdown();
-							#if debug
-						}
-							#end
-
-				default:
-					startCountdown();
-			}
+		}
+		else
+		{
+			startCountdown();
 		}
 		RecalculateRating();
 
@@ -2257,18 +2190,6 @@ class PlayState extends MusicBeatState
 				var subEvent:Array<Dynamic> = [newEventNote[0] + ClientPrefs.noteOffset - eventNoteEarlyTrigger(newEventNote), newEventNote[1], newEventNote[2], newEventNote[3]];
 				eventNotes.push(subEvent);
 				eventPushed(subEvent);
-			}
-		}
-
-		if(crowdChart!=null && SONG.song.toLowerCase()=='feaster'){
-			for(section in crowdChart.notes){
-				for(note in section.sectionNotes){
-					crowdAnims.push({
-						time: note[0],
-						data: Math.floor(note[1]%4),
-						length: note[2]
-					});
-				}
 			}
 		}
 
