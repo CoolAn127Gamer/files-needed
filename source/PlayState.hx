@@ -1377,9 +1377,7 @@ class PlayState extends MusicBeatState
 								}
 							});
 						});
-					});
 				case 'senpai' | 'roses' | 'thorns':
-					if(isStoryMode){
 						if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 						schoolIntro(doof);
 
@@ -1387,9 +1385,7 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 			seenCutscene = true;
-		}
-		else
-		{
+		} else {
 			startCountdown();
 		}
 		RecalculateRating();
